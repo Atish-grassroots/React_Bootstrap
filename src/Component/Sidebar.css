@@ -1,0 +1,20 @@
+.full-height-sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar {
+  flex-grow: 1; 
+}
+
+/* Sidebar.css */
+.sidebar .nav-link {
+    color: #1E1E1E; 
+    font-size: 14px;
+}
+
+.sidebar .nav-link:hover {
+    color: #FFFFFF; /* White color on hover */
+    background-color: #4A90E2; /* Blue background on hover */
+}
