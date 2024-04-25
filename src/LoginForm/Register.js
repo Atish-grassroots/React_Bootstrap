@@ -3,10 +3,10 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 function Register() {
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#F0F2F5' }}>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#F0F2F5' }}>
             <Row className="w-100">
                 <Col md={6} className="d-none d-md-flex justify-content-center align-items-center">
-                    <img src="./register.svg" alt="Sign Up Illustration" style={{ maxWidth: '100%', height: 'auto' }} />
+                    <img src="./register.svg" alt="Sign Up Illustration" style={{ maxWidth: '80%', height: 'auto' }} />
                 </Col>
                 <Col md={6} className="d-flex justify-content-center align-items-center">
                     <Card style={{ width: '400px', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
@@ -43,7 +43,7 @@ function Register() {
                     </Card>
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 

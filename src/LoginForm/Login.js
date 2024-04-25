@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {  Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../redux/actions/authActions';
 
 function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+      const [email, setEmail] = useState('');
+     const [password, setPassword] = useState('');
+     const dispatch = useDispatch();
+     const navigate = useNavigate();
+     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+ 
+     useEffect(() => {
+         if (isAuthenticated) {
+             navigate('/dashboard');
+         }
+     }, [isAuthenticated, navigate]);
+ 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Email:', email, 'Password:', password);
-    };
+     const handleSubmit = (event) => {
+       event.preventDefault();
+       dispatch(login(email, password));
+     };
 
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#F0F2F5' }}>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#F0F2F5' }}>
             <Row className="w-100">
                 <Col md={6} className="d-none d-md-flex justify-content-center align-items-center">
-                    <img src="./login.svg" alt="Sign In Illustration" style={{ maxWidth: '100%', height: 'auto' }} />
+                    <img src="./login.svg" alt="Sign In Illustration" style={{ maxWidth: '80%', height: 'auto' }} />
                 </Col>
                 <Col md={6} className="d-flex justify-content-center align-items-center">
                     <Card style={{ width: '400px', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
@@ -38,7 +50,7 @@ function LoginForm() {
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control
-                                        type="email"
+                                        type="text"
                                         placeholder="Enter email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
@@ -73,7 +85,7 @@ function LoginForm() {
                     </Card>
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 
